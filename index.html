@@ -2,10 +2,12 @@
 
 <head></head>
 <body id=body>
+    <h1>Rock Paper Scissors</h1>
     <button class=btn>Rock</button>
     <button class=btn>Paper</button>
     <button class=btn>Scissors</button>
-
+    <br>
+    <br>
     <div id=results></div>
 
     <script>
@@ -38,19 +40,19 @@
                 results.textContent = `It's a tie.`;
             }
             displayScore(results, playerScore, computerScore);
-            checkForWinner(results, playerScore, computerScore)
+            checkForWinner(results, playerScore, computerScore);
         }
 
         function displayScore(results, playerScore, computerScore) {
-            results.textContent += `\nCurrent Score: ${playerScore} - ${computerScore}`;
+            results.innerHTML += `<br>Current Score: ${playerScore} - ${computerScore}`;
         }
 
         function checkForWinner(results, playerScore, computerScore) {
             if (playerScore === 5) {
-                results.textContent = 'You win!'
+                results.textContent = 'You win!';
                 resetGame(results);
             } else if (computerScore === 5) {
-                results.textContent = 'You lose.'
+                results.textContent = 'You lose.';
                 resetGame(results);
             }
         }
@@ -62,8 +64,10 @@
         function resetGame(results) {
             buttons.forEach(button => button.removeEventListener('click', playRound));
             const body = document.querySelector('#body');
+            const lineBreak = document.createElement("br");
             const resetButton = document.createElement('button');
             resetButton.textContent = 'Play Again?';
+            body.appendChild(lineBreak);
             body.appendChild(resetButton);
             resetButton.addEventListener('click', () => {
                 playerScore = 0;
